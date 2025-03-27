@@ -12,6 +12,8 @@ import { AddPistoletMecaniqueComponent } from './add-pistolet-mecanique/add-pist
 import { AddPistoletPneumatiqueComponent } from './add-pistolet-pneumatique/add-pistolet-pneumatique.component';
 import { ChartAddPistoletJauneComponent } from './chart-add-pistolet-jaune/chart-add-pistolet-jaune.component';
 import { ChartAddPistoletVertComponent } from './chart-add-pistolet-vert/chart-add-pistolet-vert.component';
+import { ChartAddPistoletRougeComponent } from './chart-add-pistolet-rouge/chart-add-pistolet-rouge.component';
+import { ChartAddPistoletBleuComponent } from './chart-add-pistolet-bleu/chart-add-pistolet-bleu.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -36,7 +38,15 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'chartAddPistoletVert',
         component: ChartAddPistoletVertComponent,
-      },/*
+      },
+      {
+        path: 'chartAddPistoletRouge',
+        component: ChartAddPistoletRougeComponent,
+      },
+      {
+        path: 'chartAddPistoletBleu',
+        component: ChartAddPistoletBleuComponent,
+      }/*
       {
         path: 'menu',
         component: AppMenuComponent,

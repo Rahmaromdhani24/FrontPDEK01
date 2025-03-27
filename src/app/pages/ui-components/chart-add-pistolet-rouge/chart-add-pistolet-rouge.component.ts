@@ -13,7 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ChartModule } from '@syncfusion/ej2-angular-charts';
 
 @Component({
-  selector: 'app-chart-add-pistolet-vert',
+  selector: 'app-chart-add-pistolet-rouge',
   standalone: true,
   imports: [
     ChartModule,
@@ -29,10 +29,10 @@ import { ChartModule } from '@syncfusion/ej2-angular-charts';
     DataLabelService,
     ChartAnnotationService
   ],
-  templateUrl: './chart-add-pistolet-vert.component.html',
-  styleUrls: ['./chart-add-pistolet-vert.component.scss']
+  templateUrl: './chart-add-pistolet-rouge.component.html',
+  styleUrls: ['./chart-add-pistolet-rouge.component.scss']
 })
-export class ChartAddPistoletVertComponent {
+export class ChartAddPistoletRougeComponent {
   /***************************** Chart moyenne X *******************************************/
     // Titre et style
     public title: string = 'La Moyenne X̄';
@@ -59,8 +59,8 @@ export class ChartAddPistoletVertComponent {
   
     // Configuration de l'axe Y
     public primaryYAxis: Object = {
-      minimum: 70,
-      maximum: 130,
+      minimum: 110,
+      maximum: 180,
       interval: 10,
       majorTickLines: { width: 0 },
       lineStyle: { width: 0 },
@@ -73,27 +73,36 @@ export class ChartAddPistoletVertComponent {
        },
       stripLines: [
         // Zones colorées
-        { start: 70, end: 80, color: 'rgba(255, 0, 0, 0.43)', zIndex: 'Behind' },
-        { start: 80, end: 88, color: 'rgba(255, 255, 0, 0.64)', zIndex: 'Behind' },
-        { start: 88, end: 112, color: 'rgba(0, 200, 0, 0.53)', zIndex: 'Behind' },
-        { start: 112, end: 120, color: 'rgba(255, 255, 0, 0.64)', zIndex: 'Behind' },
-        { start: 120, end: 130, color: 'rgba(255, 0, 0, 0.43)', zIndex: 'Behind' },
+        { start: 110, end: 126, color: 'rgba(255, 0, 0, 0.43)', zIndex: 'Behind' },
+        { start: 125, end: 131, color: 'rgba(255, 255, 0, 0.64)', zIndex: 'Behind' },
+        { start: 131, end: 149, color: 'rgba(0, 200, 0, 0.53)', zIndex: 'Behind' },
+        { start: 149, end: 166, color: 'rgba(255, 255, 0, 0.64)', zIndex: 'Behind' },
+        { start: 166, end: 180, color: 'rgba(255, 0, 0, 0.43)', zIndex: 'Behind' },
         
         // Lignes rouges
         { 
-          start: 80, 
-          end: 80.1, 
+          start: 125, 
+          end: 125.1, 
           color: 'red', 
           zIndex: 'Over', // Important: doit être au-dessus
           border: { color: 'red', width: 2 },
           opacity: 1
         },
         { 
-          start: 120, 
-          end: 120.2, 
+          start: 166, 
+          end: 166.1, 
           color: 'red', 
           zIndex: 'Over', // Important: doit être au-dessus
           border: { color: 'red', width: 2 },
+          opacity: 1
+        }
+        ,
+        { 
+          start: 140, 
+          end: 140.1, 
+          color: 'black', 
+          zIndex: 'Over', // Important: doit être au-dessus
+          border: { color: 'black', width: 1 },
           opacity: 1
         }
       ]
@@ -101,9 +110,9 @@ export class ChartAddPistoletVertComponent {
   
     // Données de la série
     public seriesMoyenne: Object[] = [
-      { x: '2025-23-10', y: 102 }, { x: '2025-23-11', y: 109 }, { x: '2025-23-12', y: 95 },
-      { x: '2025-23-13', y: 106 }, { x: '2025-23-14', y: 98 }, { x: '2025-23-15', y: 102 },
-      { x: '2025-23-16', y: 90 }, { x: '2025-23-17', y: 105 }, { x: '2025-23-18', y: 100 },
+      { x: '2025-23-10', y: 140 }, { x: '2025-23-11', y: 134 }, { x: '2025-23-12', y: 145 },
+      { x: '2025-23-13', y: 136 }, { x: '2025-23-14', y: 140 }, { x: '2025-23-15', y: 144 },
+      { x: '2025-23-16', y: 143 }, 
 
     ];
   
