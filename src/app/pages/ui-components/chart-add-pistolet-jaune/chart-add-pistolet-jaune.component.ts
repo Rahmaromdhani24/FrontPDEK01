@@ -13,7 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ChartModule } from '@syncfusion/ej2-angular-charts';
 
 @Component({
-  selector: 'app-forms',
+  selector: 'app-chart-add-pistolet-jaune',
   standalone: true,
   imports: [
     ChartModule,
@@ -29,10 +29,10 @@ import { ChartModule } from '@syncfusion/ej2-angular-charts';
     DataLabelService,
     ChartAnnotationService
   ],
-  templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css']
+  templateUrl: './chart-add-pistolet-jaune.component.html',
+  styleUrls: ['./chart-add-pistolet-jaune.component.scss']
 })
-export class AppFormsComponent {
+export class ChartAddPistoletJauneComponent {
   /***************************** Chart moyenne X *******************************************/
   public title: string = 'La Moyenne X̄';  // X majuscule avec barre
     public titleStyle: Object = {

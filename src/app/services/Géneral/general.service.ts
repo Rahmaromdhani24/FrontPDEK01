@@ -18,7 +18,7 @@ export class GeneralService {
   }
 
 
-  private urlGetUser = 'http://localhost:8281/admin/getUser';
+  private urlGetUser = 'http://localhost:8281/auth/getUser';
   getUser(matricule: number): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get<any>(`${this.urlGetUser}/${matricule}`, {

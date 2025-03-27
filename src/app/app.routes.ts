@@ -6,14 +6,12 @@ import { PageNotFoundComponent } from './Authentification/page-not-found/page-no
 
 export const routes: Routes = [
 
-  /*{path:"" , component:LoginUserComponent },
-  {path:"login" , component:LoginUserComponent },
-  {path:"dashboard_Admin" , component:HomeAdminComponent },
-  {path:"" , redirectTo:"/login",pathMatch:'full'},
-  {path:"**" , component:PageNotFoundComponent} */
   
-  {path:"" , component:LoginUserComponent },
-  {
+  { path: "", component: LoginUserComponent }, // Page par défaut : login
+  { path: "login", component: LoginUserComponent }, // Ajout de la route login
+ 
+
+    {
     path: '',
     component: FullComponent,
     children: [
@@ -39,7 +37,13 @@ export const routes: Routes = [
   },
 
   {
-    path: '**',
-    redirectTo: 'PageNotFoundComponent',
+     path: '**', component: PageNotFoundComponent ,
+
   },
 ];
+/*{path:"" , component:LoginUserComponent },
+  {path:"login" , component:LoginUserComponent },
+  {path:"dashboard_Admin" , component:HomeAdminComponent },
+  {path:"" , redirectTo:"/login",pathMatch:'full'},
+  {path:"**" , component:PageNotFoundComponent} */
+  

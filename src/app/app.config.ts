@@ -31,7 +31,7 @@ import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './Interceptor/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { ChartModule, LineSeriesService } from '@syncfusion/ej2-angular-charts'; 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -53,6 +53,7 @@ export const appConfig: ApplicationConfig = {
       MaterialModule,
       TablerIconsModule.pick(TablerIcons),
       NgScrollbarModule,
+      ChartModule
     ),
   ],
 };

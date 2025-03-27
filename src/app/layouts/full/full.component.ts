@@ -43,8 +43,36 @@ const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
 })
 export class FullComponent implements OnInit {
   navItems = navItems;
+  fullName: string = '';
+  role: string = '';
+  userString  = localStorage.getItem('user') || '';
   userRole: string = localStorage.getItem('role') || '';  // Récupère le rôle de l'utilisateur depuis localStorage
 
+
+  ngOnInit(): void { 
+    // Récupération du nom complet de l'utilisateur
+    if (this.userString) {
+      const user = JSON.parse(this.userString); // Convertir la chaîne en objet
+      this.fullName = `${user.prenom} ${user.nom}`; // Affecter à this.fullName
+      console.log("Nom complet de l'utilisateur : " + this.fullName); // Vérification dans la console
+    }
+  
+    // Récupération du rôle de l'utilisateur
+    const storedRole = localStorage.getItem('role');
+    const roleMapping: { [key: string]: string } = {
+      'AGENT_QUALITE': 'Agent de qualité',
+      'CHEF_LIGNE': 'Chef de ligne',
+      'TECHNICIEN': 'Technicien',
+      'ADMINISTRATEUR': 'Administrateur'
+    };
+    this.role = storedRole ? roleMapping[storedRole] || storedRole : 'Rôle inconnu';
+  }
+  
+  clearStorage(){
+    localStorage.clear() ; 
+    this.router.navigate(['/login']);
+
+  }
   // Fonction pour vérifier si l'utilisateur a accès à un item
   hasAccess(item: NavItem): boolean {
     // Si aucun rôle n'est spécifié, on affiche l'élément
@@ -89,13 +117,7 @@ export class FullComponent implements OnInit {
         }
       });
 
-    // Initialize project 
-
-
-
-
-
-
+    
 
 
 
@@ -153,7 +175,7 @@ export class FullComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void { }
+
 
   ngOnDestroy() {
     this.layoutChangesSubscription.unsubscribe();
@@ -178,5 +200,7 @@ export class FullComponent implements OnInit {
     this.options.sidenavOpened = isOpened;
     //this.settings.setOptions(this.options);
   }
+  
+  
 
 }

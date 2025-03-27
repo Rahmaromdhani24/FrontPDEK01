@@ -8,17 +8,17 @@ export const navItems: NavItem[] = [
     displayName: 'Dashboard',
     iconName: 'layout-grid-add',
     route: '/dashboard',
-    bgcolor: 'primary',
-    roles: ['ADMIN','OPERATEUR'], 
+    bgcolor: 'primary'
   },
   {
     navCap: 'Utilisateurs',
+    roles: ['ADMIN',]
   },
   {
     displayName: 'Opérateurs',
     iconName: 'users-group',
     bgcolor: 'secondary',
-    roles: ['ADMIN','OPERATEUR'], 
+    roles: ['ADMIN',], 
     //chip: true,
     //chipClass: 'bg-primary text-white',
     //chipContent: 'PRO',
@@ -51,6 +51,7 @@ export const navItems: NavItem[] = [
     displayName: 'Chefs des lignes',
     iconName: 'users',
     bgcolor: 'warning',
+     roles: ['ADMIN',],
     //chip: true,
     //chipClass: 'bg-primary text-white',
     //chipContent: 'PRO',
@@ -84,6 +85,7 @@ export const navItems: NavItem[] = [
     displayName: 'Agents des Qualité',
     iconName: 'users',
     bgcolor: 'success',
+    roles: ['ADMIN',],
     //chip: true,
     //chipClass: 'bg-primary text-white',
     //chipContent: 'PRO',
@@ -116,6 +118,7 @@ export const navItems: NavItem[] = [
     displayName: 'Techniciens',
     iconName: 'users',
     bgcolor: 'error',
+    roles: ['ADMIN',] ,
     //chip: true,
     //chipClass: 'bg-primary text-white',
     //chipContent: 'PRO',
@@ -145,17 +148,114 @@ export const navItems: NavItem[] = [
     ],
   },
   
-  
   {
     navCap: 'PDEK',
   },
   
-  {
+  /*{
     displayName: 'PDEKs',
     iconName: 'file-text',
     route: '/ui-components/menu',
-    bgcolor: 'primary',
-    roles: ['ADMIN', 'OPERATEUR'], 
+    bgcolor: 'warning',
+    roles: ['ADMIN', 'AGENT_QUALITE'], 	
+
+  }, */
+  {
+    displayName: 'Ajout PDEK',
+    iconName: 'file-text',
+    bgcolor: 'success',
+
+    children: [
+      {
+        displayName: 'Pistolet mécanique ',
+        iconName: 'point',
+        bgcolor: 'tranparent',
+        external: false,
+        chipClass: 'bg-primary text-white',
+        route: '/ui-components/addPistoletMecanique',
+       /* children: [
+          {
+            displayName: 'Pistolet vert',
+            bgcolor: 'success',
+            external: false,
+            chipClass: 'bg-success text-white',
+            route: '/ui-components/forms',
+          },
+          {
+            displayName: 'Pistolet bleu',
+            bgcolor: 'transparent',
+            external: false,
+            chipClass: 'bg-primary text-white',
+            route: '/ui-components/addPistoletBleuMecanique',
+          },
+          {
+            displayName: 'Pistolet rouge',
+            bgcolor: 'error',
+            external: false,
+            chipClass: 'bg-danger text-white',
+            route: '/pistolet-rouge',
+          },
+          {
+            displayName: 'Pistolet jaune',
+            bgcolor: 'warning',
+            external: false,
+            chipClass: 'bg-warning text-white',
+            route: '/pistolet-jaune',
+          },
+        ],*/
+      },
+      {
+        displayName: 'Pistolet pneumatique ',
+        iconName: 'point',
+        bgcolor: 'tranparent',
+        external: false,
+        chipClass: 'bg-primary text-white',
+        route:  '/ui-components/addPistoletPneumatique',  
+       /* children: [
+          {
+            displayName: 'Pistolet vert',
+            bgcolor: 'success',
+            external: false,
+            chipClass: 'bg-success text-white',
+            route: '/pistolet-vert',
+          },
+          {
+            displayName: 'Pistolet bleu',
+            bgcolor: 'transparent',
+            external: false,
+            chipClass: 'bg-primary text-white',
+            route: '/pistolet-bleu',
+          },
+          {
+            displayName: 'Pistolet rouge',
+            bgcolor: 'error',
+            external: false,
+            chipClass: 'bg-danger text-white',
+            route: '/pistolet-rouge',
+          },
+          {
+            displayName: 'Pistolet jaune',
+            bgcolor: 'warning',
+            external: false,
+            chipClass: 'bg-warning text-white',
+            route: '/pistolet-jaune',
+          },
+        ], */ },
+    ],
+  },
+  
+
+  
+  {
+    navCap: 'Plan d actions',
+  },
+  
+  {
+    displayName: 'Plan d actions',
+    iconName: 'file-text',
+    route: '/ui-components/menu',
+    bgcolor: 'error',
+    roles: ['ADMIN', 'AGENT_QUALITE'], 	
 
   }, 
   
@@ -168,10 +268,10 @@ export const navItems: NavItem[] = [
     route: 'https://spike-angular-pro-main.netlify.app/charts/line',
     bgcolor: 'error',
     external: true,
-    chip: true,
+    //chip: true,
     chipClass: 'bg-primary text-white',
-    chipContent: 'PRO',
-    roles: ['ADMIN', 'OPERATEUR'], 
+  //  chipContent: 'PRO',
+    roles: ['ADMIN', 'AGENT_QUALITE'], 
 
   },
   {
@@ -183,7 +283,7 @@ export const navItems: NavItem[] = [
     chip: true,
     chipClass: 'bg-primary text-white',
     chipContent: 'PRO',
-    roles: ['ADMIN', 'OPERATEUR'], 
+    roles: ['ADMIN'], 
 
   },
   {
@@ -195,7 +295,7 @@ export const navItems: NavItem[] = [
     chip: true,
     chipClass: 'bg-primary text-white',
     chipContent: 'PRO',
-    roles: ['ADMIN', 'OPERATEUR'], 
+    roles: ['ADMIN'], 
 
   },
   {
@@ -207,7 +307,7 @@ export const navItems: NavItem[] = [
     chip: true,
     chipClass: 'bg-primary text-white',
     chipContent: 'PRO',
-    roles: ['ADMIN', 'OPERATEUR'], 
+    roles: ['ADMIN'], 
 
   },
   {
@@ -218,20 +318,20 @@ export const navItems: NavItem[] = [
     iconName: 'archive',
     route: '/ui-components/badge',
     bgcolor: 'warning',
-    roles: ['ADMIN', 'OPERATEUR'], 
+    roles: ['ADMIN', 'AGENT_QUALITE'], 
 
   },
 
   {
     navCap: 'Historiques',
-    roles: ['ADMIN','OPERATEUR'], 
+    roles: ['ADMIN','AGENT_QUALITE'], 
   },
   {
     displayName: 'Historiques utilisateurs',
     iconName: 'history',
     route: '/ui-components/badge',
     bgcolor: 'warning',
-    roles: ['ADMIN','OPERATEUR'], 
+    roles: ['ADMIN','AGENT_QUALITE'], 
 
   },
 ];

@@ -8,23 +8,35 @@ import { AppMenuComponent } from './menu/menu.component';
 import { AppTooltipsComponent } from './tooltips/tooltips.component';
 import { AppFormsComponent } from './forms/forms.component';
 import { AppTablesComponent } from './tables/tables.component';
+import { AddPistoletMecaniqueComponent } from './add-pistolet-mecanique/add-pistolet-mecanique.component';
+import { AddPistoletPneumatiqueComponent } from './add-pistolet-pneumatique/add-pistolet-pneumatique.component';
+import { ChartAddPistoletJauneComponent } from './chart-add-pistolet-jaune/chart-add-pistolet-jaune.component';
+import { ChartAddPistoletVertComponent } from './chart-add-pistolet-vert/chart-add-pistolet-vert.component';
 
 export const UiComponentsRoutes: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'badge',
-        component: AppBadgeComponent,
+        path: 'addPistoletMecanique',
+        component: AddPistoletMecaniqueComponent,
+      },
+     {
+        path: 'addPistoletPneumatique',
+        component: AddPistoletPneumatiqueComponent,
+      } ,
+      {
+        path: 'forms',
+        component: AppFormsComponent,
       },
       {
-        path: 'chips',
-        component: AppChipsComponent,
+        path: 'chartAddPistoletJaune',
+        component: ChartAddPistoletJauneComponent,
       },
       {
-        path: 'lists',
-        component: AppListsComponent,
-      },
+        path: 'chartAddPistoletVert',
+        component: ChartAddPistoletVertComponent,
+      },/*
       {
         path: 'menu',
         component: AppMenuComponent,
@@ -40,7 +52,7 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'tables',
         component: AppTablesComponent,
-      },
+      },*/
     ],
   },
 ];

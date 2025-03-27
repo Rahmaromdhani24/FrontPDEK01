@@ -70,6 +70,7 @@ export class LoginUserComponent implements OnInit {
           this.admin = user; 
           localStorage.setItem('user', JSON.stringify(user)); 
           localStorage.setItem('role', user.role);    
+          localStorage.setItem('matricule' , user.matricule) ; 
         },
         error: (err) => {
           console.error('S7i7aaaa   !!!!! ');
