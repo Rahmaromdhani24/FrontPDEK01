@@ -148,7 +148,6 @@ export class AddPistoletMecaniqueComponent implements OnInit{
         // Calculer la moyenne correctement
         const somme = echantillons.reduce((acc, val) => acc + val, 0);
         const moyenne = somme / echantillons.length;
-      
         // Affecter les valeurs à l'objet pistolet
         pistolet.ech1 = echantillons[0] || 0;
         pistolet.ech2 = echantillons[1] || 0;
@@ -169,6 +168,8 @@ export class AddPistoletMecaniqueComponent implements OnInit{
         pistolet.specificationMesure = "65 N";
         pistolet.axeSerrage = this.myForm.get('axeSerrage')?.value ;
         pistolet.coupePropre =this.myForm.get('selectedValue')?.value;
+        pistolet.nbrCollierTester =this.myForm.get('nombreCollier')?.value;
+        pistolet.semaine =this.myForm.get('semaine')?.value;
         const matriculeUser: number = Number(localStorage.getItem('matricule'));
       
         // Appeler le service pour ajouter le pistolet
@@ -208,8 +209,52 @@ export class AddPistoletMecaniqueComponent implements OnInit{
             this.myForm.get('numeroPistolet')?.setErrors(null);
             this.myForm.get('typePistolet')?.setErrors(null);
             this.myForm.get('selectedValue')?.setErrors(null);
-      
-            // Affichage de l'alerte de succès
+
+        const ettendu =  valeurMax - valeurMin;
+        console.log("ettendu est :"+ ettendu)
+            if(ettendu >= 6){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  `Le pistolet a été ajouté mais avec des valeurs critiques${
+                    ettendu >= 6 ? ' (Étendue ≥ 6)' : ''
+                  }` ,
+              icon: 'warning' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+              
+            });
+          }
+          else  if((moyenne >= 50 && moyenne <= 56) || (moyenne >= 74 && moyenne <= 80)){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  'Le pistolet a été ajouté mais avec des valeurs critiques Moyenne en zone Jaune' ,
+              icon: 'warning' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+            });
+          }
+          else  if((moyenne >= 40 && moyenne <= 50) || (moyenne >= 80 && moyenne <= 90)){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  'Le pistolet a été ajouté mais avec des valeurs critiques Moyenne en zone Rouge',
+              icon: 'error' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+            });
+          }
+          else  if(ettendu < 6 || ( moyenne >= 56 && moyenne <= 74) ){
             Swal.fire({
               title: 'Ajout réussi !',
               text: 'Le pistolet a été ajouté avec succès.',
@@ -221,6 +266,7 @@ export class AddPistoletMecaniqueComponent implements OnInit{
                 confirmButton: 'custom-confirm-button'
               }
             });
+          }
               this.router.navigate(['/ui-components/chartAddPistoletBleu'])
     
             console.log('Pistolet ajouté avec succès', response);
@@ -322,6 +368,8 @@ export class AddPistoletMecaniqueComponent implements OnInit{
     pistolet.specificationMesure = "140 N";
     pistolet.axeSerrage = this.myForm.get('axeSerrage')?.value ;
     pistolet.coupePropre =this.myForm.get('selectedValue')?.value;
+    pistolet.nbrCollierTester =this.myForm.get('nombreCollier')?.value;
+    pistolet.semaine =this.myForm.get('semaine')?.value;
     const matriculeUser: number = Number(localStorage.getItem('matricule'));
   
     // Appeler le service pour ajouter le pistolet
@@ -362,30 +410,76 @@ export class AddPistoletMecaniqueComponent implements OnInit{
         this.myForm.get('typePistolet')?.setErrors(null);
         this.myForm.get('selectedValue')?.setErrors(null);
   
-        // Affichage de l'alerte de succès
-        Swal.fire({
-          title: 'Ajout réussi !',
-          text: 'Le pistolet a été ajouté avec succès.',
-          icon: 'success',
-          confirmButtonText: 'OK',
-          customClass: {
-            popup: 'custom-popup',
-            title: 'custom-title',
-            confirmButton: 'custom-confirm-button'
+        const ettendu =  valeurMax - valeurMin;
+        console.log("ettendu est :"+ ettendu)
+            if(ettendu >= 12){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  `Le pistolet a été ajouté mais avec des valeurs critiques${
+                    ettendu >= 12 ? ' (Étendue ≥ 12)' : ''
+                  }` ,
+              icon: 'warning' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+              
+            });
           }
-        });
-          this.router.navigate(['/ui-components/chartAddPistoletRouge'])
-
-        console.log('Pistolet ajouté avec succès', response);
-      },
-      (error: any) => {
-        console.error('Erreur lors de l’ajout du pistolet', error);
+          ///  zone jaune en bas 
+          else  if((moyenne >= 126 && moyenne <= 131) || (moyenne >= 149 && moyenne <= 155)){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  'Le pistolet a été ajouté mais avec des valeurs critiques Moyenne en zone Jaune' ,
+              icon: 'warning' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+            });
+          }
+          else  if((moyenne >= 110 && moyenne <= 126) || (moyenne >= 155 && moyenne <= 160)){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  'Le pistolet a été ajouté mais avec des valeurs critiques Moyenne en zone Rouge',
+              icon: 'error' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+            });
+          }
+          else  if(ettendu < 12 || ( moyenne >= 130.1 && moyenne <= 148.9) ){
+            Swal.fire({
+              title: 'Ajout réussi !',
+              text: 'Le pistolet a été ajouté avec succès.',
+              icon: 'success',
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup',
+                title: 'custom-title',
+                confirmButton: 'custom-confirm-button'
+              }
+            });
+          }
+              this.router.navigate(['/ui-components/chartAddPistoletRouge'])
+    
+            console.log('Pistolet ajouté avec succès', response);
+          },
+          (error: any) => {
+            console.error('Erreur lors de l’ajout du pistolet', error);
+          }
+        );
+      
+        // Afficher les variables max et min et l'objet Pistolet pour débogage
+        console.log('Objet Pistolet envoyé:', pistolet);
       }
-    );
-  
-    // Afficher les variables max et min et l'objet Pistolet pour débogage
-    console.log('Objet Pistolet envoyé:', pistolet);
-  }
   /************************* Pistolet vert  ************************/
   else if (this.myForm.get('typePistolet')?.value === "PISTOLET_VERT") {
 
@@ -475,6 +569,8 @@ export class AddPistoletMecaniqueComponent implements OnInit{
     pistolet.specificationMesure = "100 N";
     pistolet.axeSerrage = this.myForm.get('axeSerrage')?.value ;
     pistolet.coupePropre =this.myForm.get('selectedValue')?.value;
+    pistolet.nbrCollierTester =this.myForm.get('nombreCollier')?.value;
+    pistolet.semaine =this.myForm.get('semaine')?.value;
     const matriculeUser: number = Number(localStorage.getItem('matricule'));
   
     // Appeler le service pour ajouter le pistolet
@@ -515,30 +611,76 @@ export class AddPistoletMecaniqueComponent implements OnInit{
         this.myForm.get('typePistolet')?.setErrors(null);
         this.myForm.get('selectedValue')?.setErrors(null);
   
-        // Affichage de l'alerte de succès
-        Swal.fire({
-          title: 'Ajout réussi !',
-          text: 'Le pistolet a été ajouté avec succès.',
-          icon: 'success',
-          confirmButtonText: 'OK',
-          customClass: {
-            popup: 'custom-popup',
-            title: 'custom-title',
-            confirmButton: 'custom-confirm-button'
+      const ettendu =  valeurMax - valeurMin;
+        console.log("ettendu est :"+ ettendu)
+            if(ettendu >= 12){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  `Le pistolet a été ajouté mais avec des valeurs critiques${
+                    ettendu >= 12 ? ' (Étendue ≥ 12)' : ''
+                  }` ,
+              icon: 'warning' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+              
+            });
           }
-        });
-          this.router.navigate(['/ui-components/chartAddPistoletVert'])
-
-        console.log('Pistolet ajouté avec succès', response);
-      },
-      (error: any) => {
-        console.error('Erreur lors de l’ajout du pistolet', error);
+          ///  zone jaune en bas 
+          else  if((moyenne >= 80 && moyenne <= 88) || (moyenne >= 112 && moyenne <= 120)){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  'Le pistolet a été ajouté mais avec des valeurs critiques Moyenne en zone Jaune' ,
+              icon: 'warning' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+            });
+          }
+          else  if((moyenne >= 70 && moyenne <= 80) || (moyenne >= 120 && moyenne <= 130)){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  'Le pistolet a été ajouté mais avec des valeurs critiques Moyenne en zone Rouge',
+              icon: 'error' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+            });
+          }
+          else  if(ettendu < 12 || ( moyenne >= 88.1 && moyenne <= 111.9) ){
+            Swal.fire({
+              title: 'Ajout réussi !',
+              text: 'Le pistolet a été ajouté avec succès.',
+              icon: 'success',
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup',
+                title: 'custom-title',
+                confirmButton: 'custom-confirm-button'
+              }
+            });
+          }
+              this.router.navigate(['/ui-components/chartAddPistoletVert'])
+    
+            console.log('Pistolet ajouté avec succès', response);
+          },
+          (error: any) => {
+            console.error('Erreur lors de l’ajout du pistolet', error);
+          }
+        );
+      
+        // Afficher les variables max et min et l'objet Pistolet pour débogage
+        console.log('Objet Pistolet envoyé:', pistolet);
       }
-    );
-  
-    // Afficher les variables max et min et l'objet Pistolet pour débogage
-    console.log('Objet Pistolet envoyé:', pistolet);
-  }
   /****************************Pistolet Jaune ********************************/
   else if (this.myForm.get('typePistolet')?.value === "PISTOLET_JAUNE") {
 
@@ -628,6 +770,8 @@ export class AddPistoletMecaniqueComponent implements OnInit{
     pistolet.specificationMesure = "40 N";
     pistolet.axeSerrage = this.myForm.get('axeSerrage')?.value ;
     pistolet.coupePropre =this.myForm.get('selectedValue')?.value;
+    pistolet.nbrCollierTester =this.myForm.get('nombreCollier')?.value;
+    pistolet.semaine =this.myForm.get('semaine')?.value;
     const matriculeUser: number = Number(localStorage.getItem('matricule'));
   
     // Appeler le service pour ajouter le pistolet
@@ -668,30 +812,76 @@ export class AddPistoletMecaniqueComponent implements OnInit{
         this.myForm.get('typePistolet')?.setErrors(null);
         this.myForm.get('selectedValue')?.setErrors(null);
   
-        // Affichage de l'alerte de succès
-        Swal.fire({
-          title: 'Ajout réussi !',
-          text: 'Le pistolet a été ajouté avec succès.',
-          icon: 'success',
-          confirmButtonText: 'OK',
-          customClass: {
-            popup: 'custom-popup',
-            title: 'custom-title',
-            confirmButton: 'custom-confirm-button'
+        const ettendu =  valeurMax - valeurMin;
+        console.log("ettendu est :"+ ettendu)
+            if(ettendu >= 3){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  `Le pistolet a été ajouté mais avec des valeurs critiques${
+                    ettendu >= 3 ? ' (Étendue ≥ 3)' : ''
+                  }` ,
+              icon: 'warning' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+              
+            });
           }
-        });
-          this.router.navigate(['/ui-components/chartAddPistoletJaune'])
-
-        console.log('Pistolet ajouté avec succès', response);
-      },
-      (error: any) => {
-        console.error('Erreur lors de l’ajout du pistolet', error);
+          ///  zone jaune en bas 
+          else  if((moyenne >= 34 && moyenne <= 35) || (moyenne >= 45 && moyenne <= 46)){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  'Le pistolet a été ajouté mais avec des valeurs critiques Moyenne en zone Jaune' ,
+              icon: 'warning' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+            });
+          }
+          else  if((moyenne >= 30 && moyenne <= 34) || (moyenne >= 46 && moyenne <= 50)){
+            Swal.fire({
+              title: 'Attention !' ,
+              text:  'Le pistolet a été ajouté mais avec des valeurs critiques Moyenne en zone Rouge',
+              icon: 'error' ,
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup-warning',
+                title: 'custom-title-warning' ,
+                confirmButton :'custom-confirm-button-warning' 
+              }
+            });
+          }
+          else  if(ettendu < 3 || ( moyenne >= 35.1 && moyenne <= 44.9) ){
+            Swal.fire({
+              title: 'Ajout réussi !',
+              text: 'Le pistolet a été ajouté avec succès.',
+              icon: 'success',
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'custom-popup',
+                title: 'custom-title',
+                confirmButton: 'custom-confirm-button'
+              }
+            });
+          }
+              this.router.navigate(['/ui-components/chartAddPistoletJaune'])
+    
+            console.log('Pistolet ajouté avec succès', response);
+          },
+          (error: any) => {
+            console.error('Erreur lors de l’ajout du pistolet', error);
+          }
+        );
+      
+        // Afficher les variables max et min et l'objet Pistolet pour débogage
+        console.log('Objet Pistolet envoyé:', pistolet);
       }
-    );
-  
-    // Afficher les variables max et min et l'objet Pistolet pour débogage
-    console.log('Objet Pistolet envoyé:', pistolet);
-  }
 } 
 }
   

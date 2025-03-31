@@ -14,6 +14,9 @@ import { ChartAddPistoletJauneComponent } from './chart-add-pistolet-jaune/chart
 import { ChartAddPistoletVertComponent } from './chart-add-pistolet-vert/chart-add-pistolet-vert.component';
 import { ChartAddPistoletRougeComponent } from './chart-add-pistolet-rouge/chart-add-pistolet-rouge.component';
 import { ChartAddPistoletBleuComponent } from './chart-add-pistolet-bleu/chart-add-pistolet-bleu.component';
+import { ListePDEKComponent } from './liste-pdek/liste-pdek.component';
+import { ListPlanActionComponent } from './list-plan-action/list-plan-action.component';
+import { AddPlanActionComponent } from './add-plan-action/add-plan-action.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -46,6 +49,19 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'chartAddPistoletBleu',
         component: ChartAddPistoletBleuComponent,
+      },
+      {
+        path: 'listePdek',
+        component: ListePDEKComponent,
+      }
+      ,
+      {
+        path: 'listePlanAction',
+        component: ListPlanActionComponent,
+      },
+      {
+        path: 'addPlanAction',
+        component: AddPlanActionComponent,
       }/*
       {
         path: 'menu',

@@ -87,4 +87,27 @@ input.ng-invalid.ng-touched {
   input.ng-touched.ng-invalid {
     border-color: red !important;
   }
-  
+  /********************************************************************/
+  /* Styles pour les alertes de succès */
+.custom-popup-success {
+  background-color: #f0f9eb;
+  border: 2px solid #a3d8a1;
+}
+.custom-title-success {
+  color: #2e7d32;
+}
+.custom-confirm-button-success {
+  background-color: #2e7d32 !important;
+}
+
+/* Styles pour les alertes d'avertissement */
+.custom-popup-warning {
+  background-color: #fff8e1;
+  border: 2px solid #ffd54f;
+}
+.custom-title-warning {
+  color: #ff8f00;
+}
+.custom-confirm-button-warning {
+  background-color: #ff8f00 !important;
+}

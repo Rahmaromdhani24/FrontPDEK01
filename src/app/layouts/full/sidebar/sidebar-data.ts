@@ -243,17 +243,31 @@ export const navItems: NavItem[] = [
         ], */ },
     ],
   },
-  
+  {
+    displayName: 'Liste PDEKs',
+    iconName: 'list-details',
+    route: '/ui-components/listePdek',
+    bgcolor: 'error',
+    roles: ['ADMIN', 'AGENT_QUALITE'], 	
+
+  },
 
   
   {
     navCap: 'Plan d actions',
   },
-  
   {
-    displayName: 'Plan d actions',
+    displayName: 'Ajout Plan d action',
     iconName: 'file-text',
-    route: '/ui-components/menu',
+    route: '/ui-components/addPlanAction',
+    bgcolor: 'success',
+    roles: ['ADMIN', 'AGENT_QUALITE'], 	
+
+  }, 
+  {
+    displayName: 'Liste Plan d actions',
+    iconName: 'file-text',
+    route: '/ui-components/listePlanAction',
     bgcolor: 'error',
     roles: ['ADMIN', 'AGENT_QUALITE'], 	
 

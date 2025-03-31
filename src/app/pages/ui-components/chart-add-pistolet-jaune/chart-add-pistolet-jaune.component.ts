@@ -104,6 +104,22 @@ export class ChartAddPistoletJauneComponent {
           zIndex: 'Over', // Important: doit être au-dessus
           border: { color: 'black', width: 1 },
           opacity: 1
+        } , 
+        {
+          start: 45,
+          end: 45.1,  // Léger décalage pour s'assurer que la ligne est visible
+          color: 'black',
+          width: 1,
+          dashArray: '5,3',  // 5px de tiret, 3px d'espace
+          zIndex: 'Over'
+        },
+        {
+          start: 35,
+          end: 35.1,
+          color: 'black',
+          width: 1,
+          dashArray: '5,3',
+          zIndex: 'Over'
         }
       ]
     };
@@ -130,6 +146,20 @@ export class ChartAddPistoletJauneComponent {
         content: '<div style="color: #333; font-weight: bold;">Zone Critique</div>',
         x: '90%',
         y: 125,
+        coordinateUnits: 'Point',
+        region: 'Chart'
+      } ,
+      {
+        content: '<div style="border-top: 1px dashed black; width: 100%;"></div>',
+        x: '0%',
+        y: '35',
+        coordinateUnits: 'Point',
+        region: 'Chart'
+      },
+      {
+        content: '<div style="border-top: 1px dashed black; width: 100%;"></div>',
+        x: '0%',
+        y: '45',
         coordinateUnits: 'Point',
         region: 'Chart'
       }
@@ -178,7 +208,6 @@ export class ChartAddPistoletJauneComponent {
      border: { color: 'red', width: 2 },
      opacity: 1
    }],
-   title: 'Axe Y'
  };
  public annotationsEtendue: Object[] = [{
   content: '<div style="border-top: 2px solid red; width:100%"></div>',

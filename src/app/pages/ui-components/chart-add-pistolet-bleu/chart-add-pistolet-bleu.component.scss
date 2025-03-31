@@ -1,17 +1,69 @@
 .form-container {
-    display: flex ;
-     flex-direction: column;
-     margin: 20px;
-     margin-top: -331px;
-     margin-left: 250px;
- 
- }
- 
+  display: flex;
+  flex-direction: row; /* Changement de column à row */
+  justify-content: space-between; /* Espacement entre les colonnes */
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 20px 0; /* Suppression des marges négatives */
+}
+.grid-label-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+@media (max-width: 576px) {
+  .grid-label-container {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+.form-column {
+  flex: 1;
+  min-width: 300px;
+  max-width: calc(50% - 1rem); /* 50% de largeur moins la moitié du gap */
+}
+
+/* Responsive - Empilement sur petits écrans */
+@media (max-width: 768px) {
+  .form-column {
+    flex: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
  .form-row {
-   display: flex;
-   align-items: flex-start;
-   margin-bottom: 15px; /* Ajoutez un espacement entre les lignes */
- }
+  display: flex;
+  flex-wrap: wrap; // Permet le retour à la ligne sur petits écrans
+  gap: 2rem; // Espacement moderne entre colonnes
+  align-items: flex-start;
+  margin-bottom: 15px;
+
+  // Pour les grands écrans
+  @media (min-width: 992px) {
+    > div {
+      flex: 1; // Les deux colonnes prennent un espace égal
+      min-width: 45%; // Empêche le rétrécissement excessif
+    }
+  }
+
+  // Pour les petits écrans
+  @media (max-width: 991px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.responsive-column {
+  // Style spécifique pour la deuxième colonne
+  @media (min-width: 992px) {
+    margin-left: auto; // Alignement à droite
+  }
+}
  
  .rowspan-cell {
    display: flex;
@@ -79,4 +131,79 @@
 #chart {
  display: block;
  height: 400px;
+}
+#label50{
+  position: relative;
+  top: -145px;
+  font-family: auto;
+  left: 9px;
+  font-size: 15px;
+}
+#label56{
+  position: relative;
+    top: -178px;
+    font-family: auto;
+    left: -19px;
+    font-size: 15px;
+}
+#label65{
+  position: relative;
+  top: -229px;
+  font-family: auto;
+  left: -47px;
+  font-size: 15px;
+  font-weight: bold;
+
+}
+#label74{
+  position: relative;
+    top: -279px;
+    font-family: auto;
+    left: -75px;
+    font-size: 15px;
+}
+#label80{
+  position: relative;
+  top: -314px;
+  font-family: auto;
+  left: -101px;
+  font-size: 15px;
+}
+#ligneDiscontinue88{
+  position: absolute;
+  top: 268px;
+  left: 15px;
+  color: black;
+  width: 1000px;
+  height: 200px;
+  }
+  #ligneDiscontinue88Part2{
+    position: absolute;
+    top: 268px;
+    left: 465px;
+    color: black;
+    width: 458px;
+    height: 200px;
+    }
+    #ligneDiscontinue112{
+      position: absolute;
+      top: 149px;
+      left: 14px;
+      color: black;
+      width: 1000px;
+      height: 200px;
+      }
+
+      #ligneDiscontinue112Part2{
+        position: absolute;
+        top: 149px;
+        left: 464px;
+        color: black;
+        width: 459px;
+        height: 200px;
+        }
+        #ligneDiscontinue88, #ligneDiscontinue88Part2, 
+#ligneDiscontinue112, #ligneDiscontinue112Part2 {
+  width: 100%; /* S'adapte à la largeur du parent */
+  left: 0; /* Réinitialiser le left si nécessaire */
 }

@@ -88,6 +88,15 @@ export class ChartAddPistoletVertComponent {
           border: { color: 'red', width: 2 },
           opacity: 1
         },
+   
+        { 
+          start: 100, 
+          end: 100.1, 
+          color: 'black', 
+          zIndex: 'Over', // Important: doit être au-dessus
+          border: { color: 'black', width: 1 },
+          opacity: 1
+        },
         { 
           start: 120, 
           end: 120.2, 
@@ -95,7 +104,24 @@ export class ChartAddPistoletVertComponent {
           zIndex: 'Over', // Important: doit être au-dessus
           border: { color: 'red', width: 2 },
           opacity: 1
+        }, 
+        {
+          start: 88,
+          end: 88.1,  // Léger décalage pour s'assurer que la ligne est visible
+          color: 'black',
+          width: 1,
+          dashArray: '5,3',  // 5px de tiret, 3px d'espace
+          zIndex: 'Over'
+        },
+        {
+          start: 112,
+          end: 112.1,
+          color: 'black',
+          width: 1,
+          dashArray: '5,3',
+          zIndex: 'Over'
         }
+     
       ]
     };
   
@@ -121,6 +147,20 @@ export class ChartAddPistoletVertComponent {
         content: '<div style="color: #333; font-weight: bold;">Zone Critique</div>',
         x: '90%',
         y: 125,
+        coordinateUnits: 'Point',
+        region: 'Chart'
+      } ,
+      {
+        content: '<div style="border-top: 1px dashed black; width: 100%;"></div>',
+        x: '0%',
+        y: '88',
+        coordinateUnits: 'Point',
+        region: 'Chart'
+      },
+      {
+        content: '<div style="border-top: 1px dashed black; width: 100%;"></div>',
+        x: '0%',
+        y: '112',
         coordinateUnits: 'Point',
         region: 'Chart'
       }
@@ -203,5 +243,5 @@ public seriesEtendue: Object[] = [
     color: '#fff'    // Bordure blanche
   }
 };
- 
+
 }

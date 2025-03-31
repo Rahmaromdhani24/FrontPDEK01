@@ -103,6 +103,22 @@ export class ChartAddPistoletBleuComponent {
           zIndex: 'Over', // Important: doit être au-dessus
           border: { color: 'black', width: 1 },
           opacity: 1
+        },
+        {
+          start: 56,
+          end: 56.1,  // Léger décalage pour s'assurer que la ligne est visible
+          color: 'black',
+          width: 1,
+          dashArray: '5,3',  // 5px de tiret, 3px d'espace
+          zIndex: 'Over'
+        },
+        {
+          start: 74,
+          end: 74.1,
+          color: 'black',
+          width: 1,
+          dashArray: '5,3',
+          zIndex: 'Over'
         }
       ]
     };
@@ -129,6 +145,20 @@ export class ChartAddPistoletBleuComponent {
         content: '<div style="color: #333; font-weight: bold;">Zone Critique</div>',
         x: '90%',
         y: 125,
+        coordinateUnits: 'Point',
+        region: 'Chart'
+      } ,
+      {
+        content: '<div style="border-top: 1px dashed black; width: 100%;"></div>',
+        x: '0%',
+        y: '56',
+        coordinateUnits: 'Point',
+        region: 'Chart'
+      },
+      {
+        content: '<div style="border-top: 1px dashed black; width: 100%;"></div>',
+        x: '0%',
+        y: '74',
         coordinateUnits: 'Point',
         region: 'Chart'
       }
