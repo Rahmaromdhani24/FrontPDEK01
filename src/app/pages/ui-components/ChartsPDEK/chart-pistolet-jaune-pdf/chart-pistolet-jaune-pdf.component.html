@@ -1,0 +1,55 @@
+<div  style="width: 75%; height: 400px;">
+    <ejs-chart 
+     
+      [titleStyle]="titleStyle"
+      [primaryXAxis]="primaryXAxis"
+      [primaryYAxis]="primaryYAxis"
+      [chartArea]="chartArea"
+      [tooltip]="tooltip"
+      [annotations]="annotations"
+      [legendSettings]="{visible: false}"
+      background="transparent">
+      <e-series-collection>
+        <e-series 
+          [dataSource]="seriesMoyenne" 
+          type="Line" 
+          xName="x" 
+          yName="y" 
+          width="2"
+          [marker]="{
+            visible: true, 
+            width: 10, 
+            height: 10,
+            dataLabel: { visible: false }
+          }"
+          [animation]="{ enable: true }">
+        </e-series>
+      </e-series-collection>
+    </ejs-chart>
+    <span id="label34"> 34 -</span>
+    <span id="label35"> 35 -</span>
+    <span id="label40"> 40 -</span>
+    <span id="label45"> 45 -</span>
+    <span id="label46"> 46 -</span>
+  </div>
+  <div style="width: 75%; height: 250px;">
+    <ejs-chart 
+     
+      [titleStyle]="titleStyleEtendue"
+      [primaryXAxis]="primaryXAxisEtendue" 
+      [primaryYAxis]="primaryYAxisEtendue"
+      [tooltip]="tooltipEtendue"
+      [annotations]="annotationsEtendue"
+      [legendSettings]="{visible: false}">
+      <e-series-collection>
+        <e-series 
+          [dataSource]="seriesEtendue" 
+          type="Line" 
+          xName="x" 
+          yName="y" 
+          width="2"
+          [marker]="markerEtendue">
+        </e-series>
+      </e-series-collection>
+    </ejs-chart>
+  </div>

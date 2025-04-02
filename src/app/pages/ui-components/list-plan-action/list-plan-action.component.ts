@@ -44,7 +44,6 @@ imports: [
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    DatePipe ,
     MatDialogModule
   ],
   templateUrl: './list-plan-action.component.html',

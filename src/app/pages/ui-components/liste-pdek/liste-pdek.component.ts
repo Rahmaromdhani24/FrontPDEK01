@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { OperatorDetailsModalComponent } from '../operator-details-modal/operator-details-modal.component';
+import { PistoletJauneService } from 'src/app/services/PDF/Pistolet Jaune/pistolet-jaune.service';
+import { PlanActionPdfService } from 'src/app/services/PDF/Plan d\'action/plan-action-pdf.service';
 interface Operateur {
   id: number;
   nom: string;
@@ -43,13 +45,13 @@ imports: [
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    DatePipe ,
     MatDialogModule
   ],
   templateUrl: './liste-pdek.component.html',
   styleUrl: './liste-pdek.component.scss'
 })
 export class ListePDEKComponent {
+pdfUrl: string | null = null;
 displayedColumns: string[] = [
     'reference',
     'operateurs',
@@ -76,7 +78,9 @@ statuses: string[] = ['en cours', 'Valider', 'Rejeter'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog , private pistoletJauneService: PistoletJauneService
+            , private planActionPdfService : PlanActionPdfService
+  ) {
     this.dataSource = new MatTableDataSource(this.generateDemoData(50));
   }
 
@@ -157,10 +161,13 @@ statuses: string[] = ['en cours', 'Valider', 'Rejeter'];
     }
   }
 
-  viewDetails(row: PDEKData) {
-    console.log('Voir détails:', row);
+  viewFilePDEK(row: PDEKData) {
+      this.pistoletJauneService.openPDFInNewWindow(row);
   }
+  viewPlanAction(){
+    this.planActionPdfService.openPDFInNewWindow();
 
+  }
   printRow(row: PDEKData) {
     console.log('Imprimer:', row);
   }

@@ -3,13 +3,15 @@ import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { LoginUserComponent } from './Authentification/login-user/login-user.component';
 import { PageNotFoundComponent } from './Authentification/page-not-found/page-not-found.component';
+import { ChartPistoletJaunePDFComponent } from './pages/ui-components/ChartsPDEK/chart-pistolet-jaune-pdf/chart-pistolet-jaune-pdf.component';
 
 export const routes: Routes = [
 
   
   { path: "", component: LoginUserComponent }, // Page par défaut : login
   { path: "login", component: LoginUserComponent }, // Ajout de la route login
- 
+  { path: "chartPistoletJaune", component: ChartPistoletJaunePDFComponent }, // Ajout de la route login
+
 
     {
     path: '',

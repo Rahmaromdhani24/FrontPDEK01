@@ -82,8 +82,8 @@
             </mat-header-cell>
             <mat-cell style="width: 300px;" *matCellDef="let row">
               <ng-container *ngIf="row.planAction; else noPlan">
-                <span class="plan-badge">
-                  <mat-icon>description</mat-icon>
+                <span class="plan-badge" (click)="viewPlanAction()">
+                  <mat-icon >description</mat-icon>
                   Voir
                 </span>
               </ng-container>
@@ -98,7 +98,7 @@
         Actions</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <!-- Icône Eye (visualisation) - couleur primaire -->
-      <button mat-icon-button (click)="viewDetails(row)" matTooltip="Voir détails">
+      <button mat-icon-button (click)="viewFilePDEK(row)" matTooltip="Voir détails">
         <mat-icon class="icon-eye">visibility</mat-icon>
       </button>
       
