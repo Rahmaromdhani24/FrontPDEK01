@@ -17,5 +17,6 @@ export class Pistolet {
     ech5!: number;
     moyenne!: number;
     etendu!: number;
+    numCourant : number ; 
   }
   

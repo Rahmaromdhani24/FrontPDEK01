@@ -17,6 +17,11 @@ import { ChartAddPistoletBleuComponent } from './chart-add-pistolet-bleu/chart-a
 import { ListePDEKComponent } from './liste-pdek/liste-pdek.component';
 import { ListPlanActionComponent } from './list-plan-action/list-plan-action.component';
 import { AddPlanActionComponent } from './add-plan-action/add-plan-action.component';
+import { ListePdekPistoletComponent } from './liste-pdek-pistolet/liste-pdek-pistolet.component';
+import { PdekPistoletJauneComponent } from '../../Agent qualité/Pdeks Pistolet/pdek-pistolet-jaune/pdek-pistolet-jaune.component';
+import { PdekPistoletRougeComponent } from '../../Agent qualité/Pdeks Pistolet/pdek-pistolet-rouge/pdek-pistolet-rouge.component';
+import { PdekPistoletBleuComponent } from '../../Agent qualité/Pdeks Pistolet/pdek-pistolet-bleu/pdek-pistolet-bleu.component';
+import { PdekPistoletVertComponent } from '../../Agent qualité/Pdeks Pistolet/pdek-pistolet-vert/pdek-pistolet-vert.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -53,6 +58,10 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'listePdek',
         component: ListePDEKComponent,
+      } ,
+      {
+        path: 'listePdekPistolet',
+        component: ListePdekPistoletComponent,
       }
       ,
       {

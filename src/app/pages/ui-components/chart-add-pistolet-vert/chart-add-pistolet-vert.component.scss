@@ -102,8 +102,8 @@
    margin-left: 200px;
  }
  #titreNumCourant{
-   margin-left: 300px;
-   color: #003d89;
+  margin-left: 385px;
+  color: #003d89;
  }
  .labelCoupePropre{
    color: #003d89;
@@ -184,19 +184,23 @@
     width: 443px;
     height: 200px;
     }
-    #ligneDiscontinue112{
+#ligneDiscontinue112{
+    position: absolute;
+    top: 106px;
+    left: 23px;
+    color: black;
+    width: 1000px;
+    height: 200px;
+}
+#ligneDiscontinue112Part2{
       position: absolute;
       top: 106px;
-      left: 23px;
+      left: 476px;
       color: black;
-      width: 1000px;
+      width: 443px;
       height: 200px;
-      }
-      #ligneDiscontinue112Part2{
-        position: absolute;
-        top: 106px;
-        left: 476px;
-        color: black;
-        width: 443px;
-        height: 200px;
-        }
+  }
+
+#btnSave{
+  margin-left: 330px;
+}

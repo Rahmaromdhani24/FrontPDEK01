@@ -61,6 +61,7 @@ export class FullComponent implements OnInit {
     const storedRole = localStorage.getItem('role');
     const roleMapping: { [key: string]: string } = {
       'AGENT_QUALITE': 'Agent de qualité',
+      'AGENT_QUALITE_PISTOLET': 'Agent de qualité',
       'CHEF_LIGNE': 'Chef de ligne',
       'TECHNICIEN': 'Technicien',
       'ADMINISTRATEUR': 'Administrateur'

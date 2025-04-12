@@ -26,6 +26,7 @@ interface PDEKData {
   operateur: Operateur;
   process: string;
   segment: string;
+  machine : string ; 
   status: string;
   planAction: string | null; // Accepte soit string soit null
 }
@@ -57,6 +58,7 @@ displayedColumns: string[] = [
     'operateurs',
     'process',
     'segment',
+    'machine',
     'status',
     'planAction',
     'action'
@@ -66,7 +68,8 @@ displayedColumns: string[] = [
 
   // Options des filtres
   processTypes: string[] = ['Torsadage', 'Sertissage', 'Sertissage IDC' ,'Soudure' ,'Pistolet'];
-  segments: string[] = ['Segment VW', 'Segment BM'];
+  segments: string[] = ['VW', 'BM'];
+  machines: string[] = ['D306', 'D295'];
 // Dans votre composant.ts
 statuses: string[] = ['en cours', 'Valider', 'Rejeter'];
   // Filtres actuels
@@ -103,6 +106,7 @@ statuses: string[] = ['en cours', 'Valider', 'Rejeter'];
         operateur: operateurs[Math.floor(Math.random() * operateurs.length)],
         process: this.processTypes[Math.floor(Math.random() * this.processTypes.length)],
         segment: this.segments[Math.floor(Math.random() * this.segments.length)],
+        machine: this.machines[Math.floor(Math.random() * this.machines.length)],
         status: this.statuses[Math.floor(Math.random() * this.statuses.length)],
         planAction: Math.random() > 0.5 ? `Plan-${i}` : null // Correct avec l'interface mise à jour
       });
@@ -162,7 +166,7 @@ statuses: string[] = ['en cours', 'Valider', 'Rejeter'];
   }
 
   viewFilePDEK(row: PDEKData) {
-      this.pistoletJauneService.openPDFInNewWindow(row);
+      this.pistoletJauneService.openPDFInNewWindow();
   }
   viewPlanAction(){
     this.planActionPdfService.openPDFInNewWindow();

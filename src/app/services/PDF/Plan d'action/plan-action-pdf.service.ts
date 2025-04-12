@@ -97,19 +97,21 @@ export class PlanActionPdfService {
 
     // ========== TABLEAU CENTRAL ==========
     const columns = [
-        { header: 'Nr', dataKey: 'nr', width: 8 },
-        { header: 'Date', dataKey: 'date', width: 25 },
-        { header: 'Description de problème', dataKey: 'probleme', width: 50 },
-        { header: 'Matricule Opérateur/Chef de ligne', dataKey: 'matricule', width: 40 },
-        { header: 'Description des décisions prises', dataKey: 'decisions', width: 50 },
-        { header: 'Délais', dataKey: 'delais', width: 20 },
-        { header: 'Responsable', dataKey: 'responsable', width: 20 },
-        { header: 'Contremaitre', dataKey: 'contremaitre', width: 20 },
-        { header: 'Maintenance', dataKey: 'maintenance', width: 20 },
-        { header: 'Qualité', dataKey: 'qualite', width: 20 }
-    ];
-
-    const tableData = Array.from({ length: 14 }, (_, i) => ({
+      { header: 'Nr', dataKey: 'nr', width: 8 },
+      { header: 'Date', dataKey: 'date', width: 25 },
+      { header: 'Description de problème', dataKey: 'probleme', width: 50 },
+      { header: 'Matricule Opérateur/Chef de ligne', dataKey: 'matricule', width: 40 },
+      { header: 'Description des décisions prises', dataKey: 'decisions', width: 50 },
+      { header: 'Délais', dataKey: 'delais', width: 20 },
+      { header: 'Responsable', dataKey: 'responsable', width: 20 },
+      { header: 'Contremaitre', dataKey: 'contremetre', width: 20 }, // Notez l'orthographe ici
+      { header: 'Maintenance', dataKey: 'maintenance', width: 20 },
+      { header: 'Qualité', dataKey: 'qualite', width: 20 }
+  ];
+  // Création des données avec vérification explicite
+const tableData = [];
+for (let i = 0; i < 14; i++) {
+    tableData.push({
         nr: i + 1,
         date: '',
         probleme: '',
@@ -120,7 +122,8 @@ export class PlanActionPdfService {
         contremetre: '',
         maintenance: '',
         qualite: ''
-    }));
+    });
+}
 
     // Configuration des en-têtes
     const headers = [
@@ -144,6 +147,7 @@ export class PlanActionPdfService {
     ];
 
     autoTable(doc, {
+      columns: columns, 
       head: [
           [
               { content: 'Nr', rowSpan: 2 },

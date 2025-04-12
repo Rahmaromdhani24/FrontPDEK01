@@ -2,24 +2,29 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pistolet } from 'src/app/Modeles/Pistolet';
+import { AjoutPistoletResponse } from 'src/app/Modeles/AjoutPistoletResponse';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PistoletMecaniqueService {
+export class PistoletPneumatiqueService {
   private apiUrl = 'http://localhost:8281/operations/pistolet'; 
 
   constructor(private http: HttpClient) {}
 
-  ajouterPistolet(matricule: number, pistolet: Pistolet): Observable<Pistolet> {
-    const token = localStorage.getItem('token');
-    return this.http.post<Pistolet>(`${this.apiUrl}/ajouterPDEK/${matricule}`, pistolet,
-       {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-  }
+ajouterPistolet(matricule: number, pistolet: Pistolet): Observable<AjoutPistoletResponse> {
+  const token = localStorage.getItem('token');
+  return this.http.post<AjoutPistoletResponse>(
+    `${this.apiUrl}/ajouterPDEK/${matricule}`,
+    pistolet,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+}
+
 
   // Obtenir le dernier numéro de cycle
   getLastNumeroCycle(

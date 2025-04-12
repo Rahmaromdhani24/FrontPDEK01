@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { catchError, tap } from 'rxjs/operators';
+import { MatButtonModule } from '@angular/material/button';
 import { 
   LineSeriesService,
   CategoryService,
@@ -11,6 +13,10 @@ import {
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ChartModule } from '@syncfusion/ej2-angular-charts';
+import { PistoletGeneralService } from 'src/app/services/Agent Qualité Montage Pistolet/pistolet-general.service';
+import { ActivatedRoute } from '@angular/router';
+import { Pistolet } from 'src/app/Modeles/Pistolet';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-chart-add-pistolet-bleu',
@@ -18,7 +24,8 @@ import { ChartModule } from '@syncfusion/ej2-angular-charts';
   imports: [
     ChartModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule ,
+    MatButtonModule
   ],
   providers: [
     LineSeriesService,
@@ -32,7 +39,40 @@ import { ChartModule } from '@syncfusion/ej2-angular-charts';
   templateUrl: './chart-add-pistolet-bleu.component.html',
   styleUrls: ['./chart-add-pistolet-bleu.component.scss']
 })
-export class ChartAddPistoletBleuComponent {
+export class ChartAddPistoletBleuComponent implements OnInit {
+  constructor(private pistoletGeneralService: PistoletGeneralService , private route: ActivatedRoute , private cdr: ChangeDetectorRef) {}
+
+  numeroCourant : number; 
+  numeroPistolet : number; 
+  typePistolet : string; 
+  idPdek : number;
+  numPage : number;
+  categorie : string;
+  plantUser : string; 
+  segmentUser : number; 
+  pistolets: Pistolet[] = [];
+  pistolet : Pistolet ;
+  reponseApi : any ; 
+
+  ngOnInit(): void {
+
+       this.pistolet = JSON.parse(localStorage.getItem("pistolet") !)  ;   
+       this.reponseApi = JSON.parse(localStorage.getItem("reponseApi") !)  ;       
+       this.numeroPistolet =  this.pistolet.numeroPistolet ; 
+       this.typePistolet = this.pistolet.type ;
+       this.categorie =  this.pistolet.categorie ; 
+       this.idPdek = this.reponseApi.pdekId ; 
+       this.numPage = this.reponseApi.pageNumber ; 
+  
+       this.plantUser = localStorage.getItem('plant')!;
+       this.segmentUser = parseInt(localStorage.getItem('segment') ?? '0');
+      console.log('Numéro de pistolet:',  this.numeroPistolet);
+      console.log('Type de pistolet:',  this.typePistolet);
+      console.log('id de pdek :',  this.idPdek);
+      console.log('numero de page de pdek :',  this.numPage);
+    this.recuepererDernierNumeroDeCycle(); 
+    this.recupererDonneesDeFichierPdekDePageParticulier().subscribe();
+  }
   /***************************** Chart moyenne X *******************************************/
     // Titre et style
     public title: string = 'La Moyenne X̄';
@@ -47,8 +87,8 @@ export class ChartAddPistoletBleuComponent {
     public primaryXAxis: Object = {
       valueType: 'Category',
       majorGridLines: { width: 0 },
-      labelIntersectAction: 'Rotate45',
-      labelRotation: -45,
+      labelIntersectAction: 'None',
+      labelRotation: 0,
       labelStyle: { 
         color: '#333',
         fontFamily: 'Arial',
@@ -124,12 +164,8 @@ export class ChartAddPistoletBleuComponent {
     };
   
     // Données de la série
-    public seriesMoyenne: Object[] = [
-      { x: '2025-23-10', y: 60 }, { x: '2025-23-11', y: 75 }, { x: '2025-23-12', y: 61 },
-      { x: '2025-23-13', y: 74 }, { x: '2025-23-14', y: 62 }, { x: '2025-23-15', y: 75 },
-      { x: '2025-23-16', y: 63 }, { x: '2025-23-17', y: 68 }, { x: '2025-23-18', y: 70 },
+     seriesMoyenne: { x: number, y: number }[] = [];
 
-    ];
   
     // Configuration du tooltip
     public tooltip: Object = {
@@ -215,17 +251,8 @@ export class ChartAddPistoletBleuComponent {
   coordinateUnits: 'Point',
   region: 'Chart'
 }];
-public seriesEtendue: Object[] = [
-  { x: '1', y: 2.5 }, { x: '2', y: 3.1 }, { x: '3', y: 4.2 },
-  { x: '4', y: 3.8 }, { x: '5', y: 5.0 }, { x: '6', y: 6.2 },
-  { x: '7', y: 7.4 }, { x: '8', y: 6.1 }, { x: '9', y: 7.3 },
-  { x: '10', y: 6.5 }, { x: '11', y: 5.7 }, { x: '12', y: 4.9 },
-  { x: '13', y: 4.1 }, { x: '14', y: 3.3 }, { x: '15', y: 2.5 },
-  { x: '16', y: 3.7 }, { x: '17', y: 4.9 }, { x: '18', y: 6.1 },
-  { x: '19', y: 7.3 }, { x: '20', y: 7.5 }, { x: '21', y: 5.2 },
-  { x: '22', y: 7.5 }, { x: '23', y: 7.6 }, { x: '24', y: 6.8 },
-  { x: '25', y: 6.0 }
-];
+public seriesEtendue: { x: number, y: number }[] = [];
+
  public tooltipEtendue: Object = {
    enable: true,
    format: 'X: ${point.x} <br/> Y: ${point.y}'
@@ -242,4 +269,50 @@ public seriesEtendue: Object[] = [
   }
 };
  
+recuepererDernierNumeroDeCycle() {
+  this.pistoletGeneralService.getDernierNumeroCycle(this.typePistolet,  this.numeroPistolet, this.categorie, this.segmentUser, this.plantUser)
+  .subscribe({
+    next: (numeroCycle) => {
+      console.log('Dernier numéro de cycle:', numeroCycle);
+      this.numeroCourant = numeroCycle;
+    },
+    error: (err) => {
+      console.error('Erreur récupération du numéro de cycle', err);
+    }
+  });
+}
+
+recupererDonneesDeFichierPdekDePageParticulier(): Observable<Pistolet[]> {
+  return this.pistoletGeneralService.getPistoletsParPdekEtPage(this.idPdek, this.numPage).pipe(
+    tap((data: Pistolet[]) => {
+      this.pistolets = data;
+      console.log('Pistolets récupérés :', data);
+
+      this.seriesMoyenne = data.map(p => ({
+        x: p.numCourant,
+        y: p.moyenne
+      }));
+
+
+      this.seriesEtendue = data.map(p => ({
+        x: p.numCourant,
+        y: p.etendu
+      }));
+
+      if (data.length > 0) {
+        this.numeroCourant = data[data.length - 1].numCourant;
+      }
+      // Log pour vérification
+      console.log('Séries Moyenne récuperer :', this.seriesMoyenne);
+      console.log('Séries Étendue récuperer :', this.seriesEtendue);
+      console.log('pistoles recuperer de pdek adequat :', this.pistolets);
+
+    }),
+    catchError(error => {
+      console.error('Erreur lors de la récupération des pistolets', error);
+      return of([]); // retourne une liste vide en cas d'erreur
+    })
+  );
+}
+
 }

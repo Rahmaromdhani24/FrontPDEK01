@@ -1,6 +1,6 @@
 <mat-card class="cardWithShadow theme-card">
     <mat-card-header>
-      <mat-card-title class="m-b-0" id="titreNumCourant">Numéro Courant : </mat-card-title>
+      <mat-card-title class="m-b-0" id="titreNumCourant">Numéro Courant : {{numeroCourant}} </mat-card-title>
     </mat-card-header>
     <mat-card-content class="b-t-1">
       <div  style="width: 100%; height: 400px;">
@@ -24,6 +24,7 @@
                 visible: true, 
                 width: 10, 
                 height: 10,
+                shape: 'Circle',
                 dataLabel: { visible: false }
               }"
               [animation]="{ enable: true }">
@@ -52,7 +53,14 @@
               xName="x" 
               yName="y" 
               width="2"
-              [marker]="markerEtendue">
+              [marker]="{
+                visible: true, 
+                width: 10, 
+                height: 10,
+                shape: 'Circle',
+                fill: 'black',
+                dataLabel: { visible: false }
+              }">
             </e-series>
           </e-series-collection>
         </ejs-chart>
@@ -66,45 +74,46 @@
               <span class="labelCoupePropre">Pistolet Vert</span>
             </mat-label>
             <mat-label class="f-w-600 m-b-30 d-block">Numéro de pistolet : &nbsp;
-              <span class="labelCoupePropre">212</span>
+              <span class="labelCoupePropre">{{pistolet.numeroPistolet}}</span>
             </mat-label>
             <mat-label class="f-w-600 m-b-30 d-block">Coupe Propre : &nbsp;
-              <span class="labelCoupePropre">N-OK</span>
+              <span class="labelCoupePropre">{{pistolet.coupePropre}}</span>
             </mat-label>
             <mat-label class="f-w-600 m-b-30 d-block">Nombre de collier tester : &nbsp;
-              <span class="labelCoupePropre">p0001</span>
+              <span class="labelCoupePropre">{{pistolet.nbrCollierTester}}</span>
             </mat-label>
             <mat-label class="f-w-600 m-b-30 d-block">Axe de serrage : &nbsp;
-              <span class="labelCoupePropre">2374</span>
+              <span class="labelCoupePropre">{{pistolet.axeSerrage}}</span>
             </mat-label>
             <mat-label class="f-w-600 m-b-30 d-block">Semaine : &nbsp;
-              <span class="labelCoupePropre">4</span>
+              <span class="labelCoupePropre">{{pistolet.semaine}}</span>
             </mat-label>
           </div>
       
           <!-- Deuxième colonne -->
           <div class="form-column">
             <mat-label class="f-w-600 m-b-30 d-block">Échantillon 1 : &nbsp;
-              <span class="labelCoupePropre">Valeur 1</span>
+              <span class="labelCoupePropre">{{pistolet.ech1}}</span>
             </mat-label>
             <mat-label class="f-w-600 m-b-30 d-block">Échantillon 2 : &nbsp;
-              <span class="labelCoupePropre">Valeur 2</span>
+              <span class="labelCoupePropre">{{pistolet.ech2}}</span>
             </mat-label>
             <mat-label class="f-w-600 m-b-30 d-block">Échantillon 3 : &nbsp;
-              <span class="labelCoupePropre">Valeur 3</span>
+              <span class="labelCoupePropre">{{pistolet.ech3}}</span>
             </mat-label>
             <mat-label class="f-w-600 m-b-30 d-block">Échantillon 4 : &nbsp;
-              <span class="labelCoupePropre">Valeur 4</span>
+              <span class="labelCoupePropre">{{pistolet.ech4}}</span>
             </mat-label>
             <mat-label class="f-w-600 m-b-30 d-block">Échantillon 5 : &nbsp;
-              <span class="labelCoupePropre">Valeur 5</span>
+              <span class="labelCoupePropre">{{pistolet.ech5}}</span>
             </mat-label>
             <mat-label class="grid-label-container">
-              <span>Moyenne X̄ : &nbsp;<span class="labelCoupePropre">4</span></span>
-              <span class="right-text">Étendue R = &nbsp;<span class="labelCoupePropre">10</span></span>
+              <span>Moyenne X̄ : &nbsp;<span class="labelCoupePropre">{{pistolet.moyenne}}</span></span>
+              <span class="right-text">Étendue R = &nbsp;<span class="labelCoupePropre">{{pistolet.etendu}}</span></span>
             </mat-label>
           </div>
         </div>
+        <button mat-flat-button color="primary" class="m-r-8" type="submit" id="btnSave">Valider PDEK</button>
       </form>
      
     </mat-card-content>

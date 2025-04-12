@@ -11,7 +11,7 @@ import { AdminServiceService } from 'src/app/services/Admin/admin-service.servic
 
 @Component({
   selector: 'app-login-user',
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, MaterialModule , FormsModule, ReactiveFormsModule],
   templateUrl: './login-user.component.html',
   styleUrl: './login-user.component.scss'
 })
@@ -31,19 +31,23 @@ export class LoginUserComponent implements OnInit {
     });
   }
 
-    onLogin(): void {
-      if (this.form.valid) {
-        const matricule = this.form.get('matricule')?.value;
-        this.authService.login(matricule).subscribe({
-          next: (response) => {
-            if (response.token) {
-              localStorage.setItem('token', response.token);             
-              this.recupererInformations(matricule)
+  onLogin(): void {
+    if (this.form.valid) {
+      const matricule = this.form.get('matricule')?.value;
+      this.authService.login(matricule).subscribe({
+        next: async (response) => {
+          if (response.token) {   
+            localStorage.setItem('token', response.token);
+            
+            try {
+              await this.recupererInformations(matricule);
               this.router.navigate(['/dashboard']);
-
+            } catch (error) {
+              console.error('Erreur lors de la récupération des informations', error);
             }
-          },
-          error: (error) => {
+          }
+        },
+        error: (error) => {
             // Gérer les erreurs de connexion, par exemple une erreur réseau
             if (error.status === 400 || error.status === 500) {
               Swal.fire({
@@ -64,22 +68,34 @@ export class LoginUserComponent implements OnInit {
         });
       } 
     }
-    recupererInformations(matricule: number): void {
-      this.authService.getUser(matricule).subscribe({
-        next: (user) => {
-          this.admin = user; 
-          localStorage.setItem('user', JSON.stringify(user)); 
-          localStorage.setItem('role', user.role);    
-          localStorage.setItem('matricule' , user.matricule) ; 
-        },
-        error: (err) => {
-          console.error('S7i7aaaa   !!!!! ');
-        }
+   
+    recupererInformations(matricule: number): Promise<void> {
+      return new Promise((resolve, reject) => {
+        this.authService.getUser(matricule).subscribe({
+          next: (user) => {
+            this.admin = user;
+            if((user.role="AGENT_QUALITE" ) && (user.operation="Montage_Pistolet")){
+              localStorage.setItem('role', "AGENT_QUALITE_PISTOLET");    
+            }
+            if((user.role="AGENT_QUALITE" ) && (user.operation=null)){
+              localStorage.setItem('role', user.role);    
+            }
+            localStorage.setItem('user', JSON.stringify(user)); 
+          
+            localStorage.setItem('matricule', user.matricule);
+
+            localStorage.setItem('plant', user.plant);
+
+            localStorage.setItem('segment', user.segment);
+            resolve();
+          },
+          error: (err) => {
+            console.error('S7i7aaaa   !!!!! ');
+            reject(err);
+          }
+        });
       });
-    }
-    
-    
-    
+    }  
 }
 
 

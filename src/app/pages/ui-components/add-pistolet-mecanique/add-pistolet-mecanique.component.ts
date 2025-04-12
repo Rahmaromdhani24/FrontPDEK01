@@ -7,12 +7,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-import { PistoletMecaniqueService } from 'src/app/services/Agent Qualité/Ajout PDEK Pistolet/pistolet-mecanique.service';
+import { PistoletMecaniqueService } from 'src/app/services/Agent Qualité Montage Pistolet/Ajout PDEK Pistolet/pistolet-mecanique.service';
 import { Pistolet } from 'src/app/Modeles/Pistolet';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';  // Assure-toi que CommonModule est importé
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { AjoutPistoletResponse } from 'src/app/Modeles/AjoutPistoletResponse';
 
 interface CoupePropre {
   value: string;
@@ -174,7 +175,7 @@ export class AddPistoletMecaniqueComponent implements OnInit{
       
         // Appeler le service pour ajouter le pistolet
         this.pistoletMecaniqueService.ajouterPistolet(matriculeUser, pistolet).subscribe(
-          (response: Pistolet) => {
+        (response: AjoutPistoletResponse) => {
             // Réinitialiser le formulaire entier
             this.myForm.reset();
       
@@ -267,9 +268,9 @@ export class AddPistoletMecaniqueComponent implements OnInit{
               }
             });
           }
-              this.router.navigate(['/ui-components/chartAddPistoletBleu'])
-    
-            console.log('Pistolet ajouté avec succès', response);
+          this.router.navigate(['/ui-components/chartAddPistoletBleu']);
+          localStorage.setItem("reponseApi", JSON.stringify(response));
+          console.log('Pistolet ajouté avec succès ', response);
           },
           (error: any) => {
             console.error('Erreur lors de l’ajout du pistolet', error);
@@ -277,7 +278,8 @@ export class AddPistoletMecaniqueComponent implements OnInit{
         );
       
         // Afficher les variables max et min et l'objet Pistolet pour débogage
-        console.log('Objet Pistolet envoyé:', pistolet);
+        console.log('Objet Pistolet envoyé dans local storage:', pistolet);
+        localStorage.setItem("pistolet", JSON.stringify(pistolet));
       }
   /*********************************** Rouge ***********************************/
   else if (this.myForm.get('typePistolet')?.value === "PISTOLET_ROUGE") {
@@ -374,7 +376,7 @@ export class AddPistoletMecaniqueComponent implements OnInit{
   
     // Appeler le service pour ajouter le pistolet
     this.pistoletMecaniqueService.ajouterPistolet(matriculeUser, pistolet).subscribe(
-      (response: Pistolet) => {
+      (response: AjoutPistoletResponse) => {
         // Réinitialiser le formulaire entier
         this.myForm.reset();
   
@@ -468,7 +470,9 @@ export class AddPistoletMecaniqueComponent implements OnInit{
               }
             });
           }
-              this.router.navigate(['/ui-components/chartAddPistoletRouge'])
+              this.router.navigate(['/ui-components/chartAddPistoletRouge']);
+              localStorage.setItem("reponseApi", JSON.stringify(response));
+
     
             console.log('Pistolet ajouté avec succès', response);
           },
@@ -479,6 +483,8 @@ export class AddPistoletMecaniqueComponent implements OnInit{
       
         // Afficher les variables max et min et l'objet Pistolet pour débogage
         console.log('Objet Pistolet envoyé:', pistolet);
+        localStorage.setItem("pistolet", JSON.stringify(pistolet));
+
       }
   /************************* Pistolet vert  ************************/
   else if (this.myForm.get('typePistolet')?.value === "PISTOLET_VERT") {
@@ -575,7 +581,7 @@ export class AddPistoletMecaniqueComponent implements OnInit{
   
     // Appeler le service pour ajouter le pistolet
     this.pistoletMecaniqueService.ajouterPistolet(matriculeUser, pistolet).subscribe(
-      (response: Pistolet) => {
+      (response: AjoutPistoletResponse) => {
         // Réinitialiser le formulaire entier
         this.myForm.reset();
   
@@ -669,8 +675,9 @@ export class AddPistoletMecaniqueComponent implements OnInit{
               }
             });
           }
-              this.router.navigate(['/ui-components/chartAddPistoletVert'])
-    
+              this.router.navigate(['/ui-components/chartAddPistoletVert']);
+              localStorage.setItem("reponseApi", JSON.stringify(response));
+
             console.log('Pistolet ajouté avec succès', response);
           },
           (error: any) => {
@@ -680,6 +687,8 @@ export class AddPistoletMecaniqueComponent implements OnInit{
       
         // Afficher les variables max et min et l'objet Pistolet pour débogage
         console.log('Objet Pistolet envoyé:', pistolet);
+        localStorage.setItem("pistolet", JSON.stringify(pistolet));
+
       }
   /****************************Pistolet Jaune ********************************/
   else if (this.myForm.get('typePistolet')?.value === "PISTOLET_JAUNE") {
@@ -776,7 +785,7 @@ export class AddPistoletMecaniqueComponent implements OnInit{
   
     // Appeler le service pour ajouter le pistolet
     this.pistoletMecaniqueService.ajouterPistolet(matriculeUser, pistolet).subscribe(
-      (response: Pistolet) => {
+      (response: AjoutPistoletResponse) => {
         // Réinitialiser le formulaire entier
         this.myForm.reset();
   
@@ -870,8 +879,9 @@ export class AddPistoletMecaniqueComponent implements OnInit{
               }
             });
           }
-              this.router.navigate(['/ui-components/chartAddPistoletJaune'])
-    
+              this.router.navigate(['/ui-components/chartAddPistoletJaune']);
+              localStorage.setItem("reponseApi", JSON.stringify(response));
+
             console.log('Pistolet ajouté avec succès', response);
           },
           (error: any) => {
@@ -881,6 +891,8 @@ export class AddPistoletMecaniqueComponent implements OnInit{
       
         // Afficher les variables max et min et l'objet Pistolet pour débogage
         console.log('Objet Pistolet envoyé:', pistolet);
+        localStorage.setItem("pistolet", JSON.stringify(pistolet));
+
       }
 } 
 }

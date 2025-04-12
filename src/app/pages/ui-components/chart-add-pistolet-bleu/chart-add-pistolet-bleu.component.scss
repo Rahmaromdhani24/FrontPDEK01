@@ -102,7 +102,7 @@
    margin-left: 200px;
  }
  #titreNumCourant{
-   margin-left: 300px;
+   margin-left: 385px;
    color: #003d89;
  }
  .labelCoupePropre{
@@ -206,4 +206,7 @@
 #ligneDiscontinue112, #ligneDiscontinue112Part2 {
   width: 100%; /* S'adapte à la largeur du parent */
   left: 0; /* Réinitialiser le left si nécessaire */
+}
+#btnSave{
+  margin-left: 330px;
 }

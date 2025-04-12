@@ -16,7 +16,7 @@ interface jsPDFWithAutoTable extends jsPDF {
 export class PistoletJauneService {
 
   // Méthode pour ouvrir le PDF dans un nouvel onglet
- openPDFInNewWindow(row: any): void {
+ openPDFInNewWindow(): void {
     const pdfDoc = this.generatePDF();
     
     // Créer l'URL du blob

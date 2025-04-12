@@ -58,9 +58,14 @@ mat-header-cell, mat-cell {
 }
 
 .mat-column-segment {
-  width: 120px;
-  min-width: 120px;
-  max-width: 120px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+}
+.mat-column-machine {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
 }
 
 .mat-column-status {
@@ -68,11 +73,15 @@ mat-header-cell, mat-cell {
   min-width: 150px;
   max-width: 150px;
 }
-
+.mat-column-machine {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+}
 .mat-column-planAction {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
 }
 
 .mat-column-action {

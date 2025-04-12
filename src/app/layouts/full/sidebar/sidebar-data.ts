@@ -164,7 +164,7 @@ export const navItems: NavItem[] = [
     displayName: 'Ajout PDEK',
     iconName: 'file-text',
     bgcolor: 'success',
-
+    roles: ['AGENT_QUALITE_PISTOLET',] , 
     children: [
       {
         displayName: 'Pistolet mécanique ',
@@ -249,6 +249,14 @@ export const navItems: NavItem[] = [
     route: '/ui-components/listePdek',
     bgcolor: 'error',
     roles: ['ADMIN', 'AGENT_QUALITE'], 	
+
+  },
+  {
+    displayName: 'Liste PDEKs',
+    iconName: 'list-details',
+    route: '/ui-components/listePdekPistolet',
+    bgcolor: 'error',
+    roles: ['ADMIN', 'AGENT_QUALITE_PISTOLET'], 	
 
   },
 

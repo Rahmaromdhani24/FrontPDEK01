@@ -1,11 +1,28 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { registerLicense } from '@syncfusion/ej2-base';
 import { AppComponent } from './app/app.component';
-import { registerLicense } from '@syncfusion/ej2-base'; // Import Syncfusion
+import { appConfig } from './app/app.config';
 
-// Enregistrez votre licence AVANT le bootstrap
-registerLicense('Ngo9BigBOggjHTQxAR8/V1NNaF5cXmBCekx0WmFZfVtgcl9GaVZQQGYuP1ZhSXxWdkZhX39YcH1UQmhcUEV9XUs='); 
+// ENTRER VOTRE CLÉ DE LICENCE ICI (identique à celle de votre compte Syncfusion)
+const SYNC_FUSION_KEY = 'Ngo9BigBOggjHTQxAR8/V1NNaF5cXmBCekx0WmFZfVtgcl9GaVZQQGYuP1ZhSXxWdkZhX39YcH1UQmhcUEV9XUs=';
 
-// Puis lancez l'application
+// Initialisation FORCÉE de la licence
+registerLicense(SYNC_FUSION_KEY);
+
+// Vérification immédiate
+const licenseCheck = () => {
+  try {
+    const sync = (window as any).ej.base;
+    if (sync && sync.getLicenseDetails && !sync.getLicenseDetails().isValid) {
+      console.error('ERREUR LICENCE SYNCFUSION - Clé invalide ou non reconnue');
+    }
+  } catch (e) {
+    console.error('Erreur vérification licence Syncfusion', e);
+  }
+};
+
+// Double vérification après chargement
+setTimeout(licenseCheck, 3000);
+
 bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+  .catch(err => console.error(err));

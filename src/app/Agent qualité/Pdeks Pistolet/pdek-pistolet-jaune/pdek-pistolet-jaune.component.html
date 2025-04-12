@@ -1,0 +1,188 @@
+
+<div class="pdf-container">
+  <!-- En-tête -->
+  <div class="header">
+    <div class="main-title">
+      Carte d'enregistrement des données du processus "Pistolet collier de serrage"
+    </div>
+  </div>
+  <div  style="width: 100%; height: 400px;">
+    <ejs-chart 
+      [title]="title" 
+      [titleStyle]="titleStyle"
+      [primaryXAxis]="primaryXAxis" 
+      [primaryYAxis]="primaryYAxis"
+      [tooltip]="tooltip"
+      [annotations]="annotations"
+      [legendSettings]="{visible: false}"
+      background="transparent">
+      <e-series-collection>
+        <e-series 
+          [dataSource]="seriesMoyenne" 
+          type="Line" 
+          xName="x" 
+          yName="y" 
+          width="2"
+          [marker]="{
+            visible: true, 
+            width: 10, 
+            height: 10,
+            shape: 'Circle',
+            dataLabel: { visible: false }
+          }"
+          [animation]="{ enable: true }">
+        </e-series>
+      </e-series-collection>
+    </ejs-chart>
+    <span id="label34"> 34 -</span>
+    <span id="label35"> 35 -</span>
+    <span id="label40"> 40 -</span>
+    <span id="label45"> 45 -</span>
+    <span id="label46"> 46 -</span>
+  </div>
+  <div style="width: 100%; height: 250px;">
+    <ejs-chart 
+      [title]="titleEtendue" 
+      [titleStyle]="titleStyleEtendue"
+      [primaryXAxis]="primaryXAxisEtendue" 
+      [primaryYAxis]="primaryYAxisEtendue"
+      [tooltip]="tooltipEtendue"
+      [annotations]="annotationsEtendue"
+      [legendSettings]="{visible: false}">
+      <e-series-collection>
+        <e-series 
+          [dataSource]="seriesEtendue" 
+          type="Line" 
+          xName="x" 
+          yName="y" 
+          width="2"
+          [marker]="{
+            visible: true, 
+            width: 10, 
+            height: 10,
+            shape: 'Circle',
+            fill: 'black',
+            dataLabel: { visible: false }
+          }">
+        </e-series>
+      </e-series-collection>
+    </ejs-chart>
+  </div>
+  <div class="tables-wrapper">
+    <!-- Tableau principal -->
+    <table class="main-table">
+      <tr><th>Code de répartition</th>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td></tr>
+
+      <tr><th>Date</th><td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td></tr>
+
+      <tr><th>Nom</th><td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td></tr>
+      <!-- 5 lignes pour X -->
+      <tr>
+        <th rowspan="5">X</th>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td></tr>
+
+          <tr><td></td><td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td></td></tr> 
+
+            <tr><td></td><td></td><td></td><td></td><td></td>
+              <td></td><td></td><td></td><td></td><td></td>
+              <td></td><td></td><td></td><td></td><td></td>
+              <td></td><td></td><td></td><td></td><td></td>
+              <td></td><td></td><td></td><td></td><td></td></tr>
+
+              <tr><td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td></tr>
+      <!-- Autres lignes -->
+      <tr><th>X̄</th><td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td></tr>
+
+      <tr><th>R</th><td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td></tr>
+      <tr>
+        <th>Nr courant</th>
+        <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+        <td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
+        <td>11</td><td>12</td><td>13</td><td>14</td><td>15</td>
+        <td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+        <td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
+      </tr>
+    </table>
+
+    <!-- Tableau de droite -->
+    <table class="side-table">
+      <thead>
+        <tr>
+          <th>Nr.</th>
+          <th>No. de collier</th>
+          <th>Axe de serrage</th>
+          <th>Semaine</th>
+          <th>Décision</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 25 lignes -->
+        <tr><td>1</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>4</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>5</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>6</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>7</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>8</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>9</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>10</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>11</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>12</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>13</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>14</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>15</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>16</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>17</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>18</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>19</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>20</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>21</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>22</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>23</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>24</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>25</td><td></td><td></td><td></td><td></td></tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
